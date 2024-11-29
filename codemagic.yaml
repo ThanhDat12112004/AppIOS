@@ -5,9 +5,17 @@ workflows:
       flutter: stable
       xcode: latest
     scripts:
+      # Cài đặt các dependencies của Flutter
       - name: Install dependencies
         script: flutter pub get
+      # Build ứng dụng iOS
       - name: Build iOS app
         script: flutter build ipa --release
     artifacts:
+      # Chỉ định nơi sẽ lưu file ipa sau khi build
       - build/ios/ipa/*.ipa
+    cache:
+      # Cấu hình để tối ưu hóa quá trình build
+      paths:
+        - build/
+        - .pub-cache
